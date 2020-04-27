@@ -3,24 +3,53 @@ const inquirer = require("inquirer");
 //const axios = require("axios")
 //const fs = require("fs")
 
+
 //Questions Array for employee class
 const questions = [
   {
     name: 'name',
+    type: 'input',
     message: 'Enter your full name.',
   },
   {
     name: 'id',
+    type: 'input',
     message: 'Enter your Employee ID.',
   },
   {
     name: 'email',
+    type: 'input',
     message: 'Enter your email.'
+  },
+  {
+    name: "role",
+    type: "rawlist",
+    message: "What is your role within our organization?",
+    choices: [
+      "Intern",
+      "Engineer",
+      "Manager",
+    ]
   }
 ]
+
 function employeeData () {
 inquirer.prompt(questions).then(answers => {
   console.info('Answer:', answers);
+  switch (answer.action) {
+    case "Intern":
+      //artistSearch();
+      break;
+
+    case "Engineer":
+      //multiSearch();
+      break;
+
+    case "Manager":
+      //rangeSearch();
+      break;
+  }
+  //////////////////////////////////////////////////////////////////  
   const data = json.stringify(answers)
   module.exports = data;
 })
@@ -31,40 +60,16 @@ inquirer.prompt(questions).then(answers => {
       // Something else when wrong
     }
   });
-
-  chooseRole()
+  //chooseRole()
 }
 
-function chooseRole() {
-  inquirer
-    .prompt({
-      name: "action",
-      type: "rawlist",
-      message: "What is your role within our organization?",
-      choices: [
-        "Intern",
-        "Engineer",
-        "Manager",
-      ]
-    })
-    .then(function (answer) {
-      switch (answer.action) {
-        case "Intern":
-          artistSearch();
-          break;
+employeeData(); 
 
-        case "Engineer":
-          multiSearch();
-          break;
 
-        case "Manager":
-          rangeSearch();
-          break;
-      }
-    });
-}
 
-employeeData();
+
+
+
 
 
 
