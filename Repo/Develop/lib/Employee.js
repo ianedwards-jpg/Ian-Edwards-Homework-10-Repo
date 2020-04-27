@@ -32,21 +32,21 @@ const questions = [
     ]
   }
 ]
-
+// Render Employee Data and switch to 
 function employeeData () {
 inquirer.prompt(questions).then(answers => {
   console.info('Answer:', answers);
   switch (answer.action) {
     case "Intern":
-      //artistSearch();
+      internData();
       break;
 
     case "Engineer":
-      //multiSearch();
+      engineerData();
       break;
 
     case "Manager":
-      //rangeSearch();
+      managerData();
       break;
   }
   //////////////////////////////////////////////////////////////////  
@@ -61,6 +61,63 @@ inquirer.prompt(questions).then(answers => {
     }
   });
   //chooseRole()
+}
+
+// Intern Data Render Function
+function internData() {
+  inquirer
+    .prompt({
+      name: "artist",
+      type: "input",
+      message: "What artist would you like to search for?"
+    })
+    .then(function(answer) {
+      var query = "SELECT position, song, year FROM top5000 WHERE ?";
+      connection.query(query, { artist: answer.artist }, function(err, res) {
+        for (var i = 0; i < res.length; i++) {
+          console.log("Position: " + res[i].position + " || Song: " + res[i].song + " || Year: " + res[i].year);
+        }
+        //runSearch();
+      });
+    });
+}
+
+//Engineer Data Render Function 
+function engineerData() {
+  inquirer
+    .prompt({
+      name: "gitHub",
+      type: "input",
+      message: "Please Enter Github profile id."
+    },)
+    .then(function(answer) {
+      var query = "SELECT position, song, year FROM top5000 WHERE ?";
+      connection.query(query, { artist: answer.artist }, function(err, res) {
+        for (var i = 0; i < res.length; i++) {
+          console.log("Position: " + res[i].position + " || Song: " + res[i].song + " || Year: " + res[i].year);
+        }
+        //runSearch();
+      });
+    });
+}
+
+// Manager Data Render Function 
+function managerData() {
+  inquirer
+    .prompt({
+      name: "officeNum",
+      type: "input",
+      message: "What is your office number?"
+    })
+    .then(function(answer) {
+      var query = "SELECT position, song, year FROM top5000 WHERE ?";
+      connection.query(query, { artist: answer.artist }, function(err, res) {
+        for (var i = 0; i < res.length; i++) {
+          console.log("Position: " + res[i].position + " || Song: " + res[i].song + " || Year: " + res[i].year);
+        }
+        //runSearch();
+      });
+    });
 }
 
 employeeData(); 
