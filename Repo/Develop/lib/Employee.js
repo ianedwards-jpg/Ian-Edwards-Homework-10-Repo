@@ -33,7 +33,7 @@ const questions = [
   }
 ]
 // Render Employee Data and switch to 
-function employeeData () {
+let employee = function employeeData () {
 inquirer.prompt(questions).then(answers => {
   console.info('Answer:', answers);
   switch (answers.role) {
@@ -50,8 +50,8 @@ inquirer.prompt(questions).then(answers => {
       break;
   }
   //////////////////////////////////////////////////////////////////  
-  const data = json.stringify(answers)
-  module.exports = data;
+  //const data = json.stringify(answers)
+  //module.exports = data;
 })
   .catch(error => {
     if (error.isTtyError) {
@@ -64,7 +64,7 @@ inquirer.prompt(questions).then(answers => {
 
 
 // Intern Data Render Function
-function internData() {
+let intern = function internData() {
   inquirer
     .prompt({
       name: "school",
@@ -79,7 +79,7 @@ function internData() {
 
 
 //Engineer Data Render Function 
-function engineerData() {
+let engineer = function engineerData() {
   inquirer
     .prompt({
       name: "github",
@@ -93,7 +93,7 @@ function engineerData() {
 }
 
 // Manager Data Render Function 
-function managerData() {
+let manager = function managerData() {
   inquirer
     .prompt({
       name: "officeNum",
@@ -106,6 +106,12 @@ function managerData() {
       });
 }
 
+module.exports = { 
+  employee,
+  intern, 
+  engineer,
+  manager 
+} 
 
 employeeData(); 
 
