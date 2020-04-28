@@ -36,7 +36,7 @@ const questions = [
 function employeeData () {
 inquirer.prompt(questions).then(answers => {
   console.info('Answer:', answers);
-  switch (answer.action) {
+  switch (answers.role) {
     case "Intern":
       internData();
       break;
@@ -60,27 +60,23 @@ inquirer.prompt(questions).then(answers => {
       // Something else when wrong
     }
   });
-  //chooseRole()
 }
+
 
 // Intern Data Render Function
 function internData() {
   inquirer
     .prompt({
-      name: "artist",
+      name: "school",
       type: "input",
-      message: "What artist would you like to search for?"
+      message: "What school did you attend?"
     })
     .then(function(answer) {
-      var query = "SELECT position, song, year FROM top5000 WHERE ?";
-      connection.query(query, { artist: answer.artist }, function(err, res) {
-        for (var i = 0; i < res.length; i++) {
-          console.log("Position: " + res[i].position + " || Song: " + res[i].song + " || Year: " + res[i].year);
-        }
-        //runSearch();
+       console.log("School: " + answer.school);
+       //runSearch();
       });
-    });
-}
+  }
+
 
 //Engineer Data Render Function 
 function engineerData() {
@@ -91,14 +87,9 @@ function engineerData() {
       message: "Please Enter Github profile id."
     },)
     .then(function(answer) {
-      var query = "SELECT position, song, year FROM top5000 WHERE ?";
-      connection.query(query, { artist: answer.artist }, function(err, res) {
-        for (var i = 0; i < res.length; i++) {
-          console.log("Position: " + res[i].position + " || Song: " + res[i].song + " || Year: " + res[i].year);
-        }
-        //runSearch();
+      console.log("Github: " + answer.gitHub);
+       //runSearch();
       });
-    });
 }
 
 // Manager Data Render Function 
@@ -110,15 +101,11 @@ function managerData() {
       message: "What is your office number?"
     })
     .then(function(answer) {
-      var query = "SELECT position, song, year FROM top5000 WHERE ?";
-      connection.query(query, { artist: answer.artist }, function(err, res) {
-        for (var i = 0; i < res.length; i++) {
-          console.log("Position: " + res[i].position + " || Song: " + res[i].song + " || Year: " + res[i].year);
-        }
-        //runSearch();
+      console.log("Office Number: " + answer.officeNum);
+       //runSearch();
       });
-    });
 }
+
 
 employeeData(); 
 
