@@ -26,8 +26,9 @@ let github = function getGithub () {
 }
 
 module.exports = { 
-    employee,
-    intern, 
-    engineer,
-    manager 
+    name,
+    role, 
+    email,
+    id,
+    github
   } 

@@ -26,8 +26,9 @@ let officeNumber = function getOfficeNumber () {
 }
 
 module.exports = { 
-    employee,
-    intern, 
-    engineer,
-    manager 
+    name,
+    role, 
+    email,
+    id,
+    officeNumber
   } 
