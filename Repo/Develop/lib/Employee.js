@@ -82,12 +82,12 @@ function internData() {
 function engineerData() {
   inquirer
     .prompt({
-      name: "gitHub",
+      name: "github",
       type: "input",
       message: "Please Enter Github profile id."
     },)
     .then(function(answer) {
-      console.log("Github: " + answer.gitHub);
+      console.log("Github: " + answer.github);
        //runSearch();
       });
 }
