@@ -3,6 +3,24 @@ const inquirer = require("inquirer");
 //const axios = require("axios")
 //const fs = require("fs")
 
+class Employee {
+  constructor(name, id, email) {
+    this.name = name
+    this.id =id
+    this.email = email
+  }
+  getName() {
+    return this.name
+  }
+  getRole () {
+    this.role;
+   
+
+}
+
+}
+
+module.exports = Employee
 
 //Questions Array for employee class
 const questions = [
@@ -33,7 +51,7 @@ const questions = [
   }
 ]
 // Render Employee Data and switch to 
-let employee = function employeeData () {
+const employee = function employeeData () {
 inquirer.prompt(questions).then(answers => {
   console.info('Answer:', answers);
   switch (answers.role) {
@@ -64,7 +82,7 @@ inquirer.prompt(questions).then(answers => {
 
 
 // Intern Data Render Function
-let intern = function internData() {
+const intern = function internData() {
   inquirer
     .prompt({
       name: "school",
@@ -79,7 +97,7 @@ let intern = function internData() {
 
 
 //Engineer Data Render Function 
-let engineer = function engineerData() {
+const engineer = function engineerData() {
   inquirer
     .prompt({
       name: "github",
@@ -93,7 +111,7 @@ let engineer = function engineerData() {
 }
 
 // Manager Data Render Function 
-let manager = function managerData() {
+const manager = function managerData() {
   inquirer
     .prompt({
       name: "officeNum",
@@ -106,14 +124,8 @@ let manager = function managerData() {
       });
 }
 
-module.exports = { 
-  employee,
-  intern, 
-  engineer,
-  manager 
-} 
 
-employeeData(); 
+
 
 
 

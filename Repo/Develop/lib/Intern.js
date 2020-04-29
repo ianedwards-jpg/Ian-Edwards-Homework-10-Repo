@@ -1,37 +1,40 @@
 // TODO: Write code to define and export the Intern class.  HINT: This class should inherit from Employee.
 const employee = require('./Employee')
 
-let name = function getName () {
+let name = function getName() {
+    employee.name;
+    console.log(employee.name)
+}
 
+let role = function getRole() {
+    employee.role;
+    console.log(employee.role)
 
 }
 
-let role = function getRole () {
-
-
-}
-
-let email = function getEmail () {
-
+let email = function getEmail() {
+    employee.email;
+    console.log(employee.email)
 
 }
 
-let id = function getId () {
-
-
-}
-
-let school = function getSchool () {
-
+let id = function getId() {
+    employee.id;
+    console.log(employee.id)
 
 }
 
-module.exports = { 
+let school = function getSchool() {
+    employee.intern.school;
+    console.log(intern.school)
+}
+
+module.exports = {
     name,
-    role, 
+    role,
     email,
     id,
     school
-  } 
+}
 
 
