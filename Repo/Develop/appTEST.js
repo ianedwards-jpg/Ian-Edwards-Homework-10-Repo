@@ -2,7 +2,11 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
-
+const htmlRenderer = require("./lib/htmlRenderer")
+const fs = require("fs")
+const path = require("path")
+const OUTPUT_DIR = path.resolve(__dirname, "output")
+const outputPath = path.join(OUTPUT_DIR, "team.html");
 //Questions Array for employee class
 const questions = [
     {
@@ -38,15 +42,15 @@ function employeeData() {
         console.info('Answer:', answers);
         switch (answers.role) {
             case "Intern":
-                internData();
+                internData(answers);
                 break;
 
             case "Engineer":
-                engineerData();
+                engineerData(answers);
                 break;
 
             case "Manager":
-                managerData();
+                managerData(answers);
                 break;
         }
         //////////////////////////////////////////////////////////////////  
@@ -64,7 +68,7 @@ function employeeData() {
 
 
 // Intern Data Render Function
-function internData() {
+function internData(employeeAnswers) {
     inquirer
         .prompt({
             name: "school",
@@ -72,6 +76,8 @@ function internData() {
             message: "What school did you attend?"
         })
         .then(function (answer) {
+            const intern = new Intern (employeeAnswers.name, employeeAnswers.id, employeeAnswers.email, answer.school)
+            readOrWrite(intern)
             console.log("School: " + answer.school);
             //runSearch();
         });
@@ -113,12 +119,27 @@ function addEmployee() {
             message: "Add New Employee?"
         })
         .then(function (answer) {
-            if (answer = true)
+            console.log(answer);
+            if (answer.addEmployee === true)
                 return employeeData();
-            else if (answer = false) {
+            else if (answer.addEmployee === false) {
                 console.log("Have a great life, jackwad.");
+                return
             }
         });
 }
 
 addEmployee(); 
+
+function readOrWrite (newEmployee) {
+    fs.readFile(path.join(__dirname, "db", "db.json"), "utf8", (err, data) => {
+        const employees = JSON.parse(data) 
+      
+        employees.push(newEmployee) 
+        fs.writeFileSync(outputPath,htmlRenderer([...employees, newEmployee, ]) , "utf-8");
+        fs.writeFile(path.join(__dirname, "db", "db.json"), JSON.stringify(employees), (err, data) => { 
+            if (err)
+            console.error(err)
+        }) 
+     })
+}
