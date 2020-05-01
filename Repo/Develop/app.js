@@ -2,6 +2,7 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
+const confirm = require('inquirer-confirm')
 const path = require("path");
 const fs = require("fs");
 ​const OUTPUT_DIR = path.resolve(__dirname, "output")
@@ -60,8 +61,6 @@ const questions = [
     }
   ]
   // Render Employee Data and switch to 
-
- function runApp { 
 
  function employeeData () {
   inquirer.prompt(questions).then(answers => {
@@ -137,11 +136,27 @@ const questions = [
         });
   }
 
-  
-  fs.appendFile('message.txt', 'data to append', (err) => {
+function writeFile () { 
+
+  fs.appendFile('message.txt', answer, answers, (err) => {
     if (err) throw err;
     console.log('The "data to append" was appended to file!');
   });
-
 }
-  runApp();
+
+function runApp () {
+ inquirer
+    .prompt({
+      name: "newEmployee",
+      type: "confirm",
+      message: "Add Employee?"
+    })
+    .then(function(answer) {
+       console.log("School: " + answer.school);
+       //runSearch();
+      });
+}
+
+
+employeeData(); 
+runApp();
